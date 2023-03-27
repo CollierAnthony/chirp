@@ -1,4 +1,4 @@
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { api, type RouterOutputs } from "~/utils/api";
@@ -118,6 +118,7 @@ const Home: NextPage = () => {
             )}
             {isSignedIn && (
               <div className="">
+                <SignOutButton />
                 <CreatePostWizard />{" "}
               </div>
             )}

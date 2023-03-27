@@ -12,7 +12,7 @@ import {
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
-    username: user.username,
+    username: user.username ?? (user.username || user.firstName),
     profilePicture: user.profileImageUrl,
   };
 };
