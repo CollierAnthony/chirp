@@ -8,6 +8,7 @@ import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { PageLayout } from "~/components/layout";
 dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
@@ -123,24 +124,22 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <main className="flex h-screen justify-center">
-        <div className="h-full w-full border-x border-slate-400 md:max-w-2xl">
-          <div className="flex border-b border-slate-400 p-4">
-            {!isSignedIn && (
-              <div className="flex justify-center">
-                <SignInButton />{" "}
-              </div>
-            )}
-            {isSignedIn && (
-              <div className="">
-                <SignOutButton />
-                <CreatePostWizard />{" "}
-              </div>
-            )}
-          </div>
-          <Feed />
+      <PageLayout>
+        <div className="flex border-b border-slate-400 p-4">
+          {!isSignedIn && (
+            <div className="flex justify-center">
+              <SignInButton />{" "}
+            </div>
+          )}
+          {isSignedIn && (
+            <div className="">
+              <SignOutButton />
+              <CreatePostWizard />{" "}
+            </div>
+          )}
         </div>
-      </main>
+        <Feed />
+      </PageLayout>
     </>
   );
 };

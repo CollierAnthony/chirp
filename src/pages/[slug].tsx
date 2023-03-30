@@ -1,12 +1,13 @@
 import { type GetStaticProps, type NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
-
+import { PageLayout } from "~/components/layout";
+import { LoadingPage } from "~/components/loading";
 const ProfilePage: NextPage<{ username: string }> = () => {
-  const { data } = api.profile.getUserByUsername.useQuery({
+  const { data, isLoading } = api.profile.getUserByUsername.useQuery({
     username: "collieranthony",
   });
-
+  if (isLoading) return <LoadingPage />;
   if (!data) return <div> 404 </div>;
 
   return (
@@ -15,9 +16,9 @@ const ProfilePage: NextPage<{ username: string }> = () => {
         <title>{data.username}</title>
       </Head>
 
-      <main className="flex h-screen justify-center">
+      <PageLayout>
         <div>{data.username}</div>
-      </main>
+      </PageLayout>
     </>
   );
 };
